@@ -242,8 +242,8 @@ class piloto_framework:
                 )
             )
         else:
-            inicio = log.fecha_inicio_ejecucion or datetime.datetime.now()
-            fin = log.fecha_fin_ejecucion or datetime.datetime.now()
+            inicio = log.fecha_inicio_ejecucion or datetime.now()
+            fin = log.fecha_fin_ejecucion or datetime.now()
             diferencia = fin - inicio
             try:
                 client = EmailClient.from_connection_string(self.connection_string)
@@ -306,6 +306,7 @@ class piloto_framework:
                 }
                 poller = client.begin_send(message)
                 result = poller.result()
+                print(result)
                 # print("Message sent: ", result.message_id)
             except Exception as error:
                 print(error)
